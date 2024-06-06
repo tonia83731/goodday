@@ -11,6 +11,7 @@ export default {
         midnight: '#003C5A',
         lionsmane: '#FCF3E5',
         celeste: '#BDD4CE',
+        'celeste-75': 'rgb(189, 212, 206, 0.75)',
         herb: '#718C69',
         marigold: '#F4A258'
       }

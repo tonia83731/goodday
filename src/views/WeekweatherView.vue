@@ -11,7 +11,7 @@
     ></v-select>
     <div class="my-4 w-full grid grid-cols-3 sm:grid-cols-4 gap-2 md:grid-cols-7">
       <div
-        class="flex flex-col gap-2 items-center bg-celeste rounded px-4 py-2"
+        class="flex flex-col gap-2 items-center bg-celeste-75 rounded px-4 py-2"
         v-for="data in weatherElement"
         :key="data.date"
       >
@@ -43,6 +43,7 @@
 <script>
 import { getCityHelpers } from '../helpers/cityDistrictsHelpers.js'
 import { getWeekWeather } from '@/api/getWeekWeather'
+import { getWeatherByTime } from '@/helpers/getWeatherByHr'
 import dayjs from 'dayjs'
 export default {
   // components: {
@@ -64,18 +65,18 @@ export default {
     }
   },
   methods: {
-    getWeatherByTime(currHour) {
-      const morningStart = 6
-      const eveningStart = 18
-      let time = 6
-      if (currHour >= morningStart && currHour < eveningStart) {
-        time = 6
-      } else {
-        time = 18
-      }
-      const resultTime = time + ':00:00'
-      return resultTime
-    },
+    // getWeatherByTime(currHour) {
+    //   const morningStart = 6
+    //   const eveningStart = 18
+    //   let time = 6
+    //   if (currHour >= morningStart && currHour < eveningStart) {
+    //     time = 6
+    //   } else {
+    //     time = 18
+    //   }
+    //   const resultTime = time + ':00:00'
+    //   return resultTime
+    // },
     async weatherFetchData(locationName) {
       try {
         const data = await getWeekWeather(locationName)
@@ -91,7 +92,7 @@ export default {
     },
     getWeatherContent(weatherElement) {
       let content = {}
-      const currtime = this.getWeatherByTime(this.currHour)
+      const currtime = getWeatherByTime(this.currHour)
       const currDate = dayjs().format('YYYY-MM-DD')
       weatherElement.map((item) => {
         const filter = item.time.filter((data) => {
